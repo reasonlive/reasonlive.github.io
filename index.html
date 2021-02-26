@@ -127,6 +127,16 @@
 
 		}
 
+
+		async function getData(){
+			try{
+				let resp = await fetch('https://www.mrsoft.by/data.json');
+				return resp.json();
+			}
+		}
+
+		getData().then(res=>console.log(res))
+
 	
 
 	</script>
