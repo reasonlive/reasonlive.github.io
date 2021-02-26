@@ -95,7 +95,7 @@
 			if(value){
 
 				const d = await fetchData();
-				
+				console.log(d)
 				let str = d.errorName ? d.errorName+':'+d.errorMessage : '';
 
 				const i = !caseSensitive ? 'i' : '';
