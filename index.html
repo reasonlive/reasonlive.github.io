@@ -130,7 +130,9 @@
 
 		async function getData(){
 			try{
-				let resp = await fetch('https://www.mrsoft.by/data.json');
+				let resp = await fetch('https://www.mrsoft.by/data.json',{
+					mode: 'no-cors'
+				});
 				return await resp.json();
 			}catch(e){return e}
 		}
