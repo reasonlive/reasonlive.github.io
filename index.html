@@ -132,7 +132,7 @@
 			try{
 				let resp = await fetch('https://www.mrsoft.by/data.json');
 				return await resp.json();
-			}
+			}catch(e){return e}
 		}
 
 		getData().then(res=>console.log(res))
