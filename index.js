@@ -8,6 +8,7 @@ const axios = require('axios');
 
 
 const server = http.createServer( async (req,res) => {
+	
 	if(req.url === '/'){
 
 		let html = await fs.promises.readFile(__dirname+'/index.html', 'utf8');
