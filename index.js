@@ -18,14 +18,14 @@ const server = http.createServer( async (req,res) => {
 	}
 
 	if(req.url.match(/\.jpg$/)){
-		
+
 		let file = await fs.promises.readFile(__dirname+req.url);
 		res.setHeader('statusCode', 200);
 		res.setHeader('Content-Type', 'image/jpg');
 		res.end(file);
 	}
 
-	if(req.url === '?data=json'){
+	if(req.url === '/?data=json'){
 
 		console.log('api data request');
 		
