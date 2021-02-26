@@ -24,7 +24,7 @@ const server = http.createServer( async (req,res) => {
 		res.end(file);
 	}
 
-	if(req.url === '/api/data'){
+	if(req.url === '/data'){
 
 		console.log('api data request');
 		
