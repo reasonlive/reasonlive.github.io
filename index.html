@@ -118,7 +118,7 @@
 			try{
 
 				const response = await fetch('/api/data');
-				return await response.json();
+				return await response.text();
 
 			}catch(e){
 				document.getElementById('output').innerHTML = e.message;
