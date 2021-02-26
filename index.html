@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="image003.jpg" type="image/jpg">
+	<title>MR-EXAMPLE</title>
+
+	<style>
+
+		.f-col-center{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.wrapper{
+			
+			width:300px;
+		}
+
+		.wrapper div{
+
+			margin:20px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class='wrapper'>
+		<div class='f-col-center'>
+			<label for="input">INPUT:</label>
+			<input type="text" name="input" id="input">
+		</div>
+		
+
+		<div class='f-col-center'>
+			<label for="checkbox">case sensitive:</label>
+			<input type="checkbox" name="caseSensitive" id="caseSensitive">
+		</div>
+		
+
+		<div class='f-col-center'>
+			<button onclick="handleLengthFilter()" id="lengthFilter">string length filter</button>
+			<button onclick="handleSubstringFilter()" id="substringFilter">substring filter</button>
+		</div>
+	</div>
+	
+
+	<div>
+		<p>DATA OUTPUT:</p>
+		<div id="output"></div>
+	</div>
+
+	<script>
+
+		
+		//if number in the input output must contain strings with length greater than input value
+
+		//if string in the input output must contain strings matching this substring
+
+		//checkbox if true case is sensitive
+
+		const handleLengthFilter = async () => {
+
+			
+			const input = document.getElementById('input');
+
+			const length = input.value ? parseInt(input.value) : false;
+
+			if(length){
+
+				const d = await fetchData();
+				
+				let str = d.errorName ? d.errorName+':'+d.errorMessage : '';
+
+				d.filter && d.filter(elem => elem.length > length).forEach(elem =>{
+					str += elem+"<br/>";
+				})
+
+				document.getElementById('output').innerHTML = str;
+			}
+		}
+
+		const handleSubstringFilter = async () => {
+
+
+			const input = document.getElementById('input');
+
+			const caseSensitive = document.getElementById('caseSensitive').checked;
+
+			const value = input && input.value;
+
+			if(value){
+
+				const d = await fetchData();
+				
+				let str = d.errorName ? d.errorName+':'+d.errorMessage : '';
+
+				const i = !caseSensitive ? 'i' : '';
+				const pattern = new RegExp(`${value}`, `g${i}`);
+
+				d.filter && d.filter(elem => elem.match(pattern)).forEach( (elem) => {
+					str += elem+'<br/>';
+				})
+
+				document.getElementById('output').innerHTML = str;
+			}
+
+		}
+		
+
+		async function fetchData(){
+
+			document.getElementById('output').innerHTML = 'loading...'
+
+			try{
+
+				const response = await fetch('/api/data');
+				return await response.json();
+
+			}catch(e){return e}
+
+		}
+
+	
+
+	</script>
+	
+
+</body>
+</html>

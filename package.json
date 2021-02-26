@@ -1,0 +1,22 @@
+{
+  "name": "mr-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reasonlive/mr-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reasonlive/mr-example/issues"
+  },
+  "homepage": "https://github.com/reasonlive/mr-example#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
