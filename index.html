@@ -117,13 +117,13 @@
 
 			try{
 
-				const response = await fetch('/?data',{
+				const response = await fetch('/data',{
 					mode: 'no-cors',
 					headers:{
 						'Origin': 'https://reasonlive.github.io'
 					}
 				});
-				return await response.text();
+				return await response.json();
 
 			}catch(e){
 				document.getElementById('output').innerHTML = e.message;
@@ -133,7 +133,9 @@
 		}
 
 
-		fetchData().then(res=>console.log(res))
+		fetchData().then(res=>{
+			document.getElementById('output').innerHTML = res.data;
+		})
 
 
 		
