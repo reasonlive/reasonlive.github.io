@@ -1,0 +1,46 @@
+Options All -Indexes
+
+AddDefaultCharset utf-8
+AddType 'application/json; charset=UTF-8' .json
+
+DirectoryIndex index.php index.htm index.html
+ErrorDocument 404 /pages/not_found.php
+
+RewriteEngine on
+RewriteBase /
+
+
+
+# Force WWW if no subdomain is given
+RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+RewriteCond %{HTTP_HOST} !^$
+RewriteCond %{HTTPS}s ^on(s)|
+RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+#RewriteRule ^index.html$ index.php [L]
+
+
+# Правила
+#RewriteRule ^reviews(/?)+$ index.php?pages=reviews [L]
+
+#RewriteRule ^login(/?)+$ index.php?pages=login [L]
+
+#RewriteRule ^publish(/?)+$ index.php?pages=publish [L]
+
+#RewriteRule ^admin(/?)+
+
+
+
+
+
+
+
+
+# Force HTTPS on the subdomains/subdirectories login or admin
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} ^(login|admin)\. [NC]
+#RewriteCond %{REQUEST_URI} ^(login|admin)\. [NC,OR]
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
